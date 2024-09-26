@@ -1,4 +1,4 @@
-# LIFT: Mesoscopic modeling of link-level interrupted flow traffic dynamics
+# LIFT: Mesoscopic modeling of **L**ink-level **I**nterrupted **F**low **T**raffic dynamics
 Ying-Chuan Ni <br />
 Traffic Engineering Group, Institute for Transport Planning and Systems, ETH Zurich
 
