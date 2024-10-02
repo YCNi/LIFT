@@ -132,7 +132,7 @@ for rs in range(1,n_seed+1):
     entries = generate_entry()
     TT, accum_link, time, step = LIFT(T,L,EL,v,w,min_interval_s,min_interval_t,second_interval,third_interval,L_jam,jam_num,path,In,p_end,p_exit_turn,cycle,start_in_cycle_exit,green_exit,
                                       entries)
-    # Analysis of path speeds
+    # Analyze path speeds
     exp_v = {}
     for i in path:
         exp_v[i] = [] # finish time, mean speed
@@ -155,7 +155,7 @@ for rs in range(1,n_seed+1):
                     mean_exp_v_300[i].append(None)
                 else:
                     mean_exp_v_300[i].append(mean_exp_v_300[i][-1])
-    # Analysis of link densities
+    # Analyze link densities
     den_300 = {}
     for i in L:
         den_300[i] = []
