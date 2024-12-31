@@ -10,7 +10,7 @@ LIFT is the Python implementation of the mesoscopic link transmission model. It 
 In config.py, you can enter information regarding traffic dynamics, driving behavioral parameters, network layout, inflow demand, and post-processing setups. The parameters of the traffic model, including effective vehicle length, free-flow speed, backward wave speed, start-up reaction time, saturation flow, also need to be defined there.
 
 ### Model
-model.py contains the model implemention. The model description can be found in the paper below. 
+model.py contains the model implemention. The model description can be found in the research paper at the bottom of the this README.md. 
 
 ### Post-processing and visualization
 The post-processing and visualization includes the evolutions of link density and path-mean speed.
@@ -19,7 +19,7 @@ The post-processing and visualization includes the evolutions of link density an
 main.py executes the simulation, post-processing, and visualization.
 
 ### Sample case study
-The sample codes are based on a virtual 2X4 single-lane signalized road network, as shown in the picture below. Other detailed information, including the OD path composition and inflow demand, can be found in the research paper at the bottom of the this README.md.
+The sample codes are based on a virtual 2X4 single-lane signalized road network, as shown in the picture below. Other detailed information, including the OD path composition and inflow demand, can also be found in the research paper.
 ![2X4_network_grid](https://github.com/user-attachments/assets/94f15cb4-b696-4765-affd-9b88afa2b2be)
 
 ## Reference
