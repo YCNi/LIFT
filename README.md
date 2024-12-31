@@ -13,7 +13,7 @@ In config.py, you can enter information regarding traffic dynamics, driving beha
 model.py contains the model implemention. The model description can be found in the research paper at the bottom of the this README.md. 
 
 ### Post-processing and visualization
-The post-processing and visualization includes the evolutions of link density and path-mean speed.
+The post-processing and visualization include the evolutions of link density and path-mean speed.
 
 ### Run
 main.py executes the simulation, post-processing, and visualization.
@@ -24,6 +24,9 @@ The sample codes are based on a virtual 2X4 single-lane signalized road network,
 
 ## Reference
 To appear. Please stay tuned.
+
+## Contact information
+For questions, please feel free to contact the author via email (ying-chuan.ni@ivt.baug.ethz.ch).
 
 ## Acknowledgement
 The author would like to thank Szu-Tung Chen for supporting the code development.
