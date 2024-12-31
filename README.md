@@ -3,7 +3,7 @@ Ying-Chuan Ni <br />
 Traffic Engineering Group, Institute for Transport Planning and Systems, ETH Zurich
 
 ## Introduction
-LIFT is the Python implementation of the mesoscopic link transmission model specifically for urban traffic considering its interrupted flow dynamics. It overcomes the challenges in the aspect of multi-commodity flow (multiple OD paths) in macroscopic modeling and has lower computation requirement compared to microscopic simulation. In addition, it is able to consider some detailed driving behavior, such as turning and start-up delay, to enhance the simulation accuracy.
+LIFT is the Python implementation of the mesoscopic link transmission model. It is specifically designed for road traffic environments in an urban network considering its interrupted flow dynamics. It overcomes the challenges in the aspect of multi-commodity flow (multiple OD paths) in macroscopic modeling and has lower computation requirement compared to microscopic simulation. In addition, it is able to consider some detailed driving behavior, such as turning and start-up delay, to enhance the simulation accuracy.
 
 ## Instructions
 ### Configuration
