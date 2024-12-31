@@ -5,7 +5,7 @@ Created on Wed Dec 11 20:37:25 2024
 """
 
 #vehicle & driving behavioral parameters
-LENGTH = 7.5 # vehicle length
+LENGTH = 7.5 # effective vehicle length (including minimum gap)
 SPEED = 12.5 # desired speed
 REACTION = 1 # reaction time
 Q_STRAIGHT = 0.625 # saturation flow rate for straight movements
