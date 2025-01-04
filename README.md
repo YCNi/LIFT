@@ -29,4 +29,4 @@ To appear. Please stay tuned.
 For questions, please feel free to contact the author via email (ying-chuan.ni@ivt.baug.ethz.ch).
 
 ## Acknowledgement
-#The author would like to thank Szu-Tung Chen for supporting the code development.
+<!--The author would like to thank Szu-Tung Chen for supporting the code development.-->
