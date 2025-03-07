@@ -105,6 +105,6 @@ DEMAND = {
         } # demand of each path
 
 #signal timing parameters
-CYCLE = 60
+CYCLE = {1:60,2:60,3:60,4:60,5:60,6:60,7:60,8:60,9:60,10:60,10001:60,10002:60,10003:60,10004:60,10005:60,10006:60}
 START_IN_CYCLE_EXIT = {1:55,2:50,3:45,4:0,5:55,6:50,7:30,8:25,9:20,10:15,10001:0,10002:5,10003:35,10004:30,10005:25,10006:20} # time in the signal cycle of the exit of ech link at the beginning of the simulation
 GREEN_EXIT = {1:25,2:25,3:20,4:25,5:25,6:25,7:25,8:25,9:25,10:20,10001:25,10002:25,10003:25,10004:25,10005:25,10006:25} # green length of the exit of each link
