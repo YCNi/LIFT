@@ -18,22 +18,10 @@ class Vehicle():
         self.v = SPEED
         self.reaction = REACTION
 
-        self.remaining_distance = None
+        self.link_exit_time = None
 
-        # self._initiate_remaining_distance()
-        # self._calculate_remaining_distance()
-        
-    def calculate_wave_speed(self):
-        return self.length / self.reaction
-    
-    def _initiate_remaining_distance(self):
-        remaining_distance = self.link.link_length
-        return remaining_distance
-
-
-    def _calculate_remaining_distance(self):
-        remaining_distance = self.remaining_distance - step_size * self.v
-        return remaining_distance()
+    def calculate_link_exit_time(self,t):
+        self.link_exit_time = t + self.link.link_length / self.v
     
     
         

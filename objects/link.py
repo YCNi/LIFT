@@ -9,12 +9,13 @@ from config import LENGTH, INTERSECTION_WIDTH, CYCLE, T
 
 class Link():
     def __init__(self, link_id, link_length, is_external,
-                 start_in_cycle_exit, green_exit):
+                 cycle, start_in_cycle_exit, green_exit):
         self.id = link_id
         self.link_length = link_length
         self.external = is_external
         self.intersection_width = INTERSECTION_WIDTH
         self.upstream_links = None
+        self.cycle = cycle
         self.start_in_cycle_exit = start_in_cycle_exit
         self.green_exit = green_exit
         
@@ -24,8 +25,9 @@ class Link():
         self.remain = []
         self.spill_num = None
 
-        self.next_event = None
+        self.next_event = []
         self.next_event_time = None
+        self.possible_event_time = {}
         
         self.time_entry_supply = -1
         self.temp_time_entry_supply = -1
@@ -76,10 +78,10 @@ class Link():
     def in_green_exit(self, request_time):
         in_green = False
         delay = 0
-        if (self.start_in_cycle_exit + request_time) % CYCLE <= self.green_exit:
+        if (self.start_in_cycle_exit + request_time) % self.cycle <= self.green_exit:
             in_green = True
         else:
-            delay = round(CYCLE - (self.start_in_cycle_exit + request_time) % CYCLE, 2)
+            delay = round(self.cycle - (self.start_in_cycle_exit + request_time) % self.cycle, 2)
         return in_green, delay
 
     def calculate_density(self, interval, time, step):
