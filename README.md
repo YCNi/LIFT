@@ -8,6 +8,7 @@ LIFT is the Python implementation of the mesoscopic link transmission model. It 
 ## Instructions
 
 ### Required package
+- Python 3.1
 - numpy
 - matplotlib
 
