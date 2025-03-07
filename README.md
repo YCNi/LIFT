@@ -6,6 +6,11 @@ Traffic Engineering Group, Institute for Transport Planning and Systems, ETH Zur
 LIFT is the Python implementation of the mesoscopic link transmission model. It is specifically designed for road traffic environments in an urban network considering its interrupted flow dynamics. It overcomes the challenges in the aspect of multi-commodity flow (multiple OD paths) in macroscopic modeling and has lower computation requirement compared to microscopic simulation. In addition, it is able to consider some detailed driving behavior, such as turning and start-up delay, to enhance the simulation accuracy.
 
 ## Instructions
+
+### Required package
+- numpy
+- matplotlib
+
 ### Configuration
 In config.py, you can enter information regarding traffic dynamics, driving behavioral parameters, network layout, inflow demand, and post-processing setups. The parameters of the traffic model, including effective vehicle length, free-flow speed, backward wave speed, start-up reaction time, saturation flow, also need to be defined there.
 
