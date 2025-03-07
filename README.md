@@ -22,6 +22,9 @@ main.py executes the simulation, post-processing, and visualization.
 The sample codes are based on a virtual 2X4 single-lane signalized road network, as shown in the picture below. Other detailed information, including the OD path composition and inflow demand, can also be found in the research paper.
 ![2X4_network_grid](https://github.com/user-attachments/assets/94f15cb4-b696-4765-affd-9b88afa2b2be)
 
+## Note
+In the current implementation, traffic dynamics and driving behavioral parameters, e.g., speed, reaction time, and saturation flow rate, etc., are fixed values which apply to all road links and vehicles.
+
 ## Reference
 To appear. Please stay tuned.
 
