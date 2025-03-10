@@ -31,7 +31,7 @@ The sample codes are based on a virtual 2X4 single-lane signalized road network,
 ## Note
 In the current implementation, traffic dynamics and driving behavioral parameters, e.g., speed, reaction time, and saturation flow rate, etc., are fixed values which apply to all road links and vehicles.
 
-## Reference
+## To cite
 To appear. Please stay tuned.
 
 ## Contact information
