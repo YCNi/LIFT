@@ -1,4 +1,7 @@
-from matplotlib import pyplot as plt
+#from matplotlib import pyplot as plt
+import matplotlib
+matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
 import math
 from config import T
 
@@ -55,7 +58,6 @@ def plot(simulation_objects, interval, n_seed):
     r = 0
     c = 0
     for i in range(n_link):
-        print(r,c)
         axs[r][c].fill_between(time_x, den_max[i+1][1:], den_min[i+1][1:], color = 'tab:red', alpha=0.5)
         axs[r][c].plot(time_x, den_max[i+1][1:], c='tab:red', linewidth=3)
         axs[r][c].plot(time_x, den_min[i+1][1:], c='tab:red', linewidth=3)
@@ -78,7 +80,7 @@ def plot(simulation_objects, interval, n_seed):
         axs[r][c].plot(time_x, speed_min[i+1][1:], c='tab:red', linewidth=3)
         axs[r][c].set_ylabel('speed (m/s)',fontname="Arial",fontsize=22)
         axs[r][c].set_xlim([0, T])
-        axs[r][c].set_ylim([0, 14])
+        axs[r][c].set_ylim([0, 10])
         axs[r][c].set_title('path '+repr(i+1),fontname="Arial",fontsize=22)
         r = r + i%2
         c = (i+1)%2
