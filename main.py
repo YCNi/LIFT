@@ -13,6 +13,10 @@ for rs in range(N_SEED):
     else:
         object.generate_exponential_entry()
     object = LIFT(object)
+    print("simulation done")
     object = post_processing(object, AGG_INTERVAL)
+    print("post-processing done")
     simulations.append(object)
+    print("simulation stored")
 plot(simulations, AGG_INTERVAL, N_SEED)
+print("plotted")
