@@ -19,7 +19,7 @@ In config.py, you can enter information regarding traffic dynamics, driving beha
 model.py contains the model implemention. The model description can be found in the research paper at the bottom of the this README.md. 
 
 ### Post-processing and visualization
-The post-processing and visualization include the evolutions of link density and path-mean speed.
+The post-processing and visualization include the evolutions of average link density and mean path speed. Note that the recording of travel time starts from the entry request of each vehicle instead of the actual entry time into the network so that the vertical queueing time caused by spillback can be considered.
 
 ### Run
 main.py executes the simulation, post-processing, and visualization.
