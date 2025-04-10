@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Dec 14 17:25:20 2024
-"""
 
 from objects.trip import Trip
 from objects.hole import Hole
@@ -62,6 +59,8 @@ def LIFT(object):
             else:
                 pass
         ############################## update time and delta t and time-in_cycle ###########################################
+        if next_event_time_all_temp > T:
+            break
         delta_t = round(next_event_time_all_temp - t, 2)
         t = round(t + delta_t, 2)
         ############################## recording ##########################################################################
@@ -75,7 +74,7 @@ def LIFT(object):
                 veh_interest = link.entry[0]
                 veh_interest.link = link
                 veh_interest.calculate_link_exit_time(t)
-                veh_interest.entry_time = t
+                veh_interest.entry_time = link.entry[0].entry_time
                 link.remain.append(veh_interest)
                 link.previous_entry_all = t
                 link.entry.pop(0)
@@ -83,15 +82,13 @@ def LIFT(object):
                 if (link.remain[0].path.id in link.exiting_path.keys()) == False:  # have next link
                     next_link = link.remain[0].path.find_next_link(link.id, object.Links)
                     veh_interest = link.remain[0]
-                    if link.external == True:
-                        veh_interest.entry_time = t
                     next_link.remain.append(veh_interest)
                     veh_interest.link = next_link
                     veh_interest.calculate_link_exit_time(t)
                     next_link.previous_entry_all = t
                 else:
                     link.remain[0].path.finished_trips.append(Trip(t, t - link.remain[0].entry_time))
-                link.previous_exit_all= t
+                link.previous_exit_all = t
                 link.next_exit_seq += 1
                 if link.external == False:
                     link.holes_in_link.append(Hole(link, t))
@@ -156,13 +153,3 @@ def LIFT(object):
     object.time = time
     object.step = step
     return object
-
-
-
-
-
-
-
-
-
-
