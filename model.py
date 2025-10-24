@@ -32,12 +32,13 @@ def LIFT(object):
             if len(link.entry) > 0: # if there are entry requests (1)
                 link.possible_event_time[1] = max(t, link.entry[0].entry_time, link.time_entry_supply)
             if len(link.remain) > 0: # if there are exit requests (2)
-                exit_time_temp = max(t, link.remain[0].link_exit_time)
+                exit_time_temp = max(t, link.remain[0].link_exit_time, link.time_exit_supply)
                 green, wait_time = link.in_green_exit(exit_time_temp)
                 if green == False:
                     link.next_exit_seq= 0
-                    exit_time_temp = exit_time_temp + wait_time
-                link.possible_event_time[2] = max(exit_time_temp, link.time_exit_supply)
+                    link.possible_event_time[2] = exit_time_temp + wait_time
+                else:
+                    link.possible_event_time[2] = exit_time_temp
             if link.external == False:
                 if len(link.holes_in_link) > 0: # if there are holes traveling, the next arrival (3)
                     link.possible_event_time[3] = link.holes_in_link[0].link_arrival_time
