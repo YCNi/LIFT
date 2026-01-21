@@ -1,4 +1,4 @@
-# LIFT: Link-level Interrupted Flow Traffic dynamics modeling
+# LIFT: Link-level Interrupted Flow Traffic dynamics simulation
 Ying-Chuan Ni <br />
 Traffic Engineering Group, Institute for Transport Planning and Systems, ETH Zurich
 
