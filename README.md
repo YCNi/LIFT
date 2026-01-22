@@ -32,7 +32,7 @@ The sample codes are based on a virtual 2X4 single-lane signalized road network,
 In the current implementation, traffic dynamics and driving behavioral parameters, e.g., speed, reaction time, and saturation flow rate, etc., are fixed values which apply to all road links and vehicles.
 
 ## To cite
-Ni, Y. C., Kouvelas, A., & Makridis, M. A. (2026). Simulating link-level interrupted flow traffic dynamics and the comparison between different models for urban road networks. *Simulation Modelling Practice and Theory*, 147, 103252.
+Ni, Y. C., Kouvelas, A., & Makridis, M. A. (2026). Simulating link-level interrupted flow traffic dynamics and the comparison between different models for urban road networks. *Simulation Modelling Practice and Theory*, *147*, 103252.
 https://doi.org/10.1016/j.simpat.2026.103252
 
 ## Contact information
