@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Dec 11 20:45:05 2024
-"""
 
 import math
 from config import LENGTH, INTERSECTION_WIDTH, CYCLE, T

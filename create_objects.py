@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Dec 12 23:12:41 2024
-"""
 
 from config import (LINKS, EXTERNAL_LINKS, PATH, PATH_EXIT_TURN, CYCLE,
                     START_IN_CYCLE_EXIT, GREEN_EXIT, TIME_INTERVAL)

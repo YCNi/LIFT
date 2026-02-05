@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Dec 11 20:28:24 2024
-"""
 
 from config import LENGTH, SPEED, REACTION
 

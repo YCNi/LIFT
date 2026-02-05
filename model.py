@@ -3,7 +3,7 @@
 
 from objects.trip import Trip
 from objects.hole import Hole
-from config import T, MIN_HEADWAY_STRAIGHT, MIN_HEADWAY_TURN, SECOND_HEADWAY, THIRD_HEADWAY
+from config import T, MIN_HEADWAY_STRAIGHT, MIN_HEADWAY_TURN, SECOND_HEADWAY, THIRD_HEADWAY, VERBOSE
 
 
 def check_no_vehicle(object):
@@ -21,7 +21,8 @@ def LIFT(object):
     time = []
 
     while t <= T:
-        # print('-------------------- new event --------------------')
+        if VERBOSE == True:
+            print('-------------------- event step --------------------')
         if check_no_vehicle(object):
             break
         ############################## find the next link event ########################################################
@@ -59,7 +60,7 @@ def LIFT(object):
                 event_link.append(link)
             else:
                 pass
-        ############################## update time and delta t and time-in_cycle ###########################################
+        ############################## update time and delta t and time-in-cycle ###########################################
         if next_event_time_all_temp > T:
             break
         delta_t = round(next_event_time_all_temp - t, 2)
@@ -96,7 +97,8 @@ def LIFT(object):
                 link.remain.pop(0)
             if (3 in link.next_event) == True: # hole arrive
                 link.holes_in_link.pop(0)
-            # print('link: ',link.id,', time: ',t,', remain: ',len(link.remain),', situation processed: ',link.next_event.event_type)
+            if VERBOSE == True:
+                print('link: ',link.id,', time: ',t,', remain: ',len(link.remain),', situation processed: ',link.next_event.event_type)
         ############################## update entry supply time ########################################################
         for link in object.Links.values():
             if not link.external:

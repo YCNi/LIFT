@@ -6,6 +6,7 @@ from config import N_SEED, AGG_INTERVAL, UNIFORM
 
 
 simulations = []
+
 for rs in range(N_SEED):
     object = Object()
     if UNIFORM == True:
@@ -18,5 +19,6 @@ for rs in range(N_SEED):
     print("post-processing done")
     simulations.append(object)
     print("simulation stored")
-plot(simulations, AGG_INTERVAL, N_SEED)
-print("plotted")
+
+#plot(simulations, AGG_INTERVAL, N_SEED)
+#print("plotted")

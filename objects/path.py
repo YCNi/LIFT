@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Dec 11 23:17:19 2024
-"""
 
 import config
 from config import DEMAND, T
