@@ -22,7 +22,7 @@ model.py contains the model implemention. The model description can be found in 
 The post-processing and visualization include the evolutions of average link density and mean path speed. Note that the recording of travel time starts from the entry request of each vehicle instead of the actual entry time into the network so that the vertical queueing time caused by spillback can be considered.
 
 ### Run
-main.py executes the simulation, post-processing, and visualization.
+main.py executes the simulation, post-processing, output storage, and visualization.
 
 ### Sample case study
 The sample codes are based on a virtual 2X4 single-lane signalized road network, as shown in the picture below. Other detailed information, including the OD path composition and inflow demand, can also be found in the research paper.
