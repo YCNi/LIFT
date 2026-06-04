@@ -11,5 +11,6 @@ def post_processing(object, interval):
     # link density
     for link in object.Links.values():
         link.calculate_density(interval, object.time, object.step)
+        link.calculate_flow(interval)
 
     return object

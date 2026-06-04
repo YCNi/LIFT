@@ -95,63 +95,66 @@ def LIFT(object):
                 if link.external == False:
                     link.holes_in_link.append(Hole(link, t))
                 link.remain.pop(0)
+                link.exit_stamp.append(t)
             if (3 in link.next_event) == True: # hole arrive
                 link.holes_in_link.pop(0)
             if VERBOSE == True:
                 print('link: ',link.id,', time: ',t,', remain: ',len(link.remain),', situation processed: ',link.next_event.event_type)
         ############################## update entry supply time ########################################################
         for link in object.Links.values():
-            if not link.external:
-                if len(link.holes_in_link) > 0:  # if there are holes
-                    link.spill_num = link.jam_num - len(link.holes_in_link)  # update spill num
-                    if len(link.remain) >= link.spill_num:  # if spill
-                        link.temp_time_entry_supply =  link.holes_in_link[0].link_arrival_time # next time of arrival of a hole
-                        for upstream_link in link.upstream_links.values():
-                            if len(upstream_link.remain) > 0 and upstream_link.in_green_exit(t)[0] == True:
-                                if (upstream_link.remain[0].path in upstream_link.exiting_path) == False:
-                                    if upstream_link.remain[0].path.find_next_link(upstream_link.id, object.Links) == link:
-                                        upstream_link.next_exit_seq = 0
+            if link.lane_num > 0:
+                if not link.external:
+                    if len(link.holes_in_link) > 0:  # if there are holes
+                        link.spill_num = link.jam_num - len(link.holes_in_link)  # update spill num
+                        if len(link.remain) >= link.spill_num:  # if spill
+                            link.temp_time_entry_supply = link.holes_in_link[0].link_arrival_time # next time of arrival of a hole
+                            for upstream_link in link.upstream_links.values():
+                                if len(upstream_link.remain) > 0 and upstream_link.in_green_exit(t)[0] == True:
+                                    if (upstream_link.remain[0].path in upstream_link.exiting_path) == False:
+                                        if upstream_link.remain[0].path.find_next_link(upstream_link.id, object.Links) == link:
+                                            upstream_link.next_exit_seq = 0
+                        else:
+                            link.temp_time_entry_supply = -1
                     else:
-                        link.temp_time_entry_supply = -1
+                        if len(link.remain) >= link.jam_num:
+                            for upstream_link in link.upstream_links.values():
+                                if len(upstream_link.remain) > 0 and upstream_link.in_green_exit(t)[0] == True:
+                                    if (upstream_link.remain[0].path in upstream_link.exiting_path) == False:
+                                        if upstream_link.remain[0].path.find_next_link(upstream_link.id, object.Links) == link:
+                                            upstream_link.next_exit_seq = 0
+                            link.temp_time_entry_supply = 99999
+                        else:
+                            link.temp_time_entry_supply = -1
                 else:
-                    if len(link.remain) >= link.jam_num:
-                        for upstream_link in link.upstream_links.values():
-                            if len(upstream_link.remain) > 0 and upstream_link.in_green_exit(t)[0] == True:
-                                if (upstream_link.remain[0].path in upstream_link.exiting_path) == False:
-                                    if upstream_link.remain[0].path.find_next_link(upstream_link.id, object.Links) == link:
-                                        upstream_link.next_exit_seq = 0
-                        link.temp_time_entry_supply = 99999
-                    else:
-                        link.temp_time_entry_supply = -1
-            else:
-                link.temp_time_entry_supply = -1
-            link.time_entry_supply = round(
-                max(link.temp_time_entry_supply, link.previous_entry_all + MIN_HEADWAY_STRAIGHT), 2)
+                    link.temp_time_entry_supply = -1
+                link.time_entry_supply = round(
+                    max(link.temp_time_entry_supply, link.previous_entry_all + MIN_HEADWAY_STRAIGHT/link.lane_num), 2)
         ############################## update exit supply time #########################################################
         for link in object.Links.values():
-            if len(link.remain) == 0:
-                link.time_exit_supply = -1
-            elif (link.remain[0].path.id in link.exiting_path.keys()) == False: # have next link
-                next_link = link.remain[0].path.find_next_link(link.id, object.Links) # next link id
-                if link.next_exit_seq == 1:
-                    link.time_exit_supply = max(link.previous_exit_all + SECOND_HEADWAY, next_link.time_entry_supply)
-                elif link.next_exit_seq == 2 and (link.remain[0].path in link.turning_exiting_path) == False:
-                    link.time_exit_supply = max(link.previous_exit_all + THIRD_HEADWAY, next_link.time_entry_supply)
-                else:
-                    if (link.remain[0].path in link.turning_exiting_path) == True:
-                        link.time_exit_supply = max(link.previous_exit_all + MIN_HEADWAY_TURN, next_link.time_entry_supply)
+            if link.lane_num > 0:
+                if len(link.remain) == 0:
+                    link.time_exit_supply = -1
+                elif (link.remain[0].path.id in link.exiting_path.keys()) == False: # have next link
+                    next_link = link.remain[0].path.find_next_link(link.id, object.Links) # next link id
+                    if link.next_exit_seq == 1:
+                        link.time_exit_supply = max(link.previous_exit_all + SECOND_HEADWAY/link.lane_num, next_link.time_entry_supply)
+                    elif link.next_exit_seq == 2 and (link.remain[0].path in link.turning_exiting_path) == False:
+                        link.time_exit_supply = max(link.previous_exit_all + THIRD_HEADWAY/link.lane_num, next_link.time_entry_supply)
                     else:
-                        link.time_exit_supply = max(link.previous_exit_all + MIN_HEADWAY_STRAIGHT, next_link.time_entry_supply)
-            else:
-                if link.next_exit_seq == 1:
-                    link.time_exit_supply = link.previous_exit_all + SECOND_HEADWAY
-                elif link.next_exit_seq == 2 and (link.remain[0].path in link.turning_exiting_path) == False:
-                    link.time_exit_supply = link.previous_exit_all + THIRD_HEADWAY
+                        if (link.remain[0].path in link.turning_exiting_path) == True:
+                            link.time_exit_supply = max(link.previous_exit_all + MIN_HEADWAY_TURN/link.lane_num, next_link.time_entry_supply)
+                        else:
+                            link.time_exit_supply = max(link.previous_exit_all + MIN_HEADWAY_STRAIGHT/link.lane_num, next_link.time_entry_supply)
                 else:
-                    if (link.remain[0].path in link.turning_exiting_path) == True:
-                        link.time_exit_supply = link.previous_exit_all + MIN_HEADWAY_TURN
+                    if link.next_exit_seq == 1:
+                        link.time_exit_supply = link.previous_exit_all + SECOND_HEADWAY/link.lane_num
+                    elif link.next_exit_seq == 2 and (link.remain[0].path in link.turning_exiting_path) == False:
+                        link.time_exit_supply = link.previous_exit_all + THIRD_HEADWAY/link.lane_num
                     else:
-                        link.time_exit_supply = link.previous_exit_all + MIN_HEADWAY_STRAIGHT
+                        if (link.remain[0].path in link.turning_exiting_path) == True:
+                            link.time_exit_supply = link.previous_exit_all + MIN_HEADWAY_TURN/link.lane_num
+                        else:
+                            link.time_exit_supply = link.previous_exit_all + MIN_HEADWAY_STRAIGHT/link.lane_num
         ################################ simulation ended ##############################################################
     object.time = time
     object.step = step

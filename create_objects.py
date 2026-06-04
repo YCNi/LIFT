@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from config import (LINKS, EXTERNAL_LINKS, PATH, PATH_EXIT_TURN, CYCLE,
+from config import (LINKS, EXTERNAL_LINKS, LANE_NUM, PATH, PATH_EXIT_TURN, CYCLE,
                     START_IN_CYCLE_EXIT, GREEN_EXIT, TIME_INTERVAL)
 from objects.link import Link
 from objects.path import Path
@@ -37,6 +37,7 @@ class Object():
                 is_external = False
             link_objs[link_id] = Link(link_id = link_id, 
                                       link_length = LINKS[link_id],
+                                      lane_num=LANE_NUM[link_id],
                                       is_external = is_external,
                                       cycle = CYCLE[link_id],
                                       start_in_cycle_exit = START_IN_CYCLE_EXIT[link_id],

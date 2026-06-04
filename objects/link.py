@@ -5,10 +5,11 @@ import math
 from config import LENGTH, INTERSECTION_WIDTH, CYCLE, T
 
 class Link():
-    def __init__(self, link_id, link_length, is_external,
+    def __init__(self, link_id, link_length, lane_num, is_external,
                  cycle, start_in_cycle_exit, green_exit):
         self.id = link_id
         self.link_length = link_length
+        self.lane_num = lane_num
         self.external = is_external
         self.intersection_width = INTERSECTION_WIDTH
         self.upstream_links = None
@@ -38,6 +39,9 @@ class Link():
         self.exiting_path = None
         self.turning_exiting_path = []
 
+        self.exit_stamp = []
+
+        self.flows = []
         self.densities = []
         
         self._calculate_length_jam()
@@ -50,7 +54,7 @@ class Link():
         if self.external == True:
             self.jam_num = float('inf')
         else:
-            self.jam_num = math.floor(self.length_jam/LENGTH)
+            self.jam_num = math.floor(self.length_jam * self.lane_num/LENGTH)
             
     def get_upstream_links(self, path_objs, link_objs):
         self.upstream_links = {}
@@ -98,9 +102,19 @@ class Link():
                     if t >= interval_id * interval and t < (interval_id + 1) * interval:
                         n_list.append(self.accumulation[i] * step[i + 1])
                         total_time += step[i + 1]
-            self.densities.append(sum(n_list) / total_time * 1000 / self.length_jam)
-            
-    
-        
-            
+            if self.lane_num > 0:
+                self.densities.append(sum(n_list) / total_time * 1000 / (self.length_jam * self.lane_num))
+            else:
+                self.densities.append(0)
+
+    def calculate_flow(self, interval):
+        for interval_id in range(int(T / interval)):
+            exit_count = 0
+            for i, t in enumerate(self.exit_stamp):
+                if t >= interval_id * interval and t < (interval_id + 1) * interval:
+                    exit_count += 1
+            if self.lane_num > 0:
+                self.flows.append(exit_count*(3600/interval)/self.lane_num)
+            else:
+                self.flows.append(0)
         
